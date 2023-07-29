@@ -43,5 +43,8 @@ module.exports = {
             'error',
             'always'
         ],
+        'react/prop-types': 'warn',
+        'no-unused-vars': 'warn',
+        'react/no-unescaped-entities': 'off'
     }
 };

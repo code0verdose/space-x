@@ -1,2 +1,2 @@
-export * from './store.js'
-export * from './api/launchesApi.js'
+export * from './store.js';
+export * from './api/launchesApi.js';
