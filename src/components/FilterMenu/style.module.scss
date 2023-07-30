@@ -1,0 +1,16 @@
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 30%;
+
+  &__btn {
+    padding: 12px;
+    border-radius: 50%;
+    
+    &:hover {
+      background: var(--bg-btn-hover-ligh);
+    }
+  }
+}

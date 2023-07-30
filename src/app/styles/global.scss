@@ -19,7 +19,7 @@ body {
 		'Open Sans',
 		'Helvetica Neue',
 		sans-serif;
-	background: #f9f9fb;
+	background: var(--bg-body-color-light);
 	color: var(--text-color-main-light);
 }
 
