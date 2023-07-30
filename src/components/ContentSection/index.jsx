@@ -4,35 +4,35 @@ import { MissionArticle } from '../MissionArticle';
 import { Container } from '../../layout/Container';
 import { Grid } from '../../layout/Grid';
 import { Spinner } from '../../ui/Spinner';
-import { useGetAllQuery, useGetByDateRangeMutation } from '../../store';
-import { useSelector } from 'react-redux';
+import { useGetByDateRangeMutation } from '../../store';
+import { useDispatch, useSelector } from 'react-redux';
+import { setMissionsData } from '../../store/slices/missionsSlice';
 
 export const ContentSection = () => {
-	// const { data = [], isLoading, isError } = useGetAllQuery();
+	const dispatch = useDispatch();
 	const [getByDateRange, { data, isLoading, isError }] =
 		useGetByDateRangeMutation();
-
-	const perRangeData = data ? data.docs : [];
-
-	const getDataByRange = async (gte, lte) => {
-		getByDateRange({
-			query: {
-				date_utc: {
-					$gte: '2015-01-01T00:00:00.000Z',
-					$lte: '2019-01-02T00:00:00.000Z',
-				},
-			},
-		});
-	};
-
-	useEffect(() => {
-		getDataByRange();
-	}, []);
-
 	const sortByDate = useSelector((state) => state.missions.sortByDate);
+
 	const showSuccessfulMissions = useSelector(
 		(state) => state.missions.showSuccessfulMissions
 	);
+	const dateRange = useSelector((state) => state.missions.dateRange);
+	const perRangeData = useSelector((state) => state.missions.data);
+
+	const getDataByRange = async ({ dateStart, dateEnd }) => {
+		getByDateRange({
+			query: {
+				date_utc: {
+					$gte: dateStart,
+					$lte: dateEnd,
+				},
+			},
+			options: {
+				limit: 10000,
+			},
+		});
+	};
 
 	const sortedData = React.useMemo(() => {
 		if (sortByDate === 'asc') {
@@ -54,10 +54,23 @@ export const ContentSection = () => {
 	}, [sortedData, showSuccessfulMissions]);
 
 	const renderCards = () => {
+		console.log(filteredData.length);
 		return filteredData.map((mission) => (
 			<MissionArticle key={mission.id} missionData={{ ...mission }} />
 		));
 	};
+
+	useEffect(() => {
+		getDataByRange(dateRange);
+	}, [dateRange]);
+
+	useEffect(() => {
+		if (data) {
+			dispatch(setMissionsData(data.docs));
+		}
+	}, [data, dispatch]);
+
+	console.log(showSuccessfulMissions);
 
 	if (isLoading) {
 		return (
