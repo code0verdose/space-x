@@ -1,14 +1,14 @@
 .panel {
-  min-width: var(--header-height);
-  height: var(--content-height);
-  background: var(--bg-color-light);
-  box-shadow: 0 0 8px rgba($color: #000000, $alpha: 0.2);
-  border-radius: 15px;
-  margin-left: 16px;
-  margin-top: 16px;
-  padding: 16px 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+	min-width: var(--header-height);
+	height: var(--content-height);
+	background: var(--bg-color-light);
+	box-shadow: 0 0 8px rgba($color: #000000, $alpha: 0.2);
+	border-radius: 15px;
+	margin-left: 16px;
+	margin-top: 16px;
+	padding: 16px 8px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }

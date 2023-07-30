@@ -9,7 +9,7 @@ export const Layout = ({ children }) => {
 		<>
 			<Header />
 			<main className={s.main}>{children}</main>
-			<Footer/>
+			<Footer />
 		</>
 	);
 };

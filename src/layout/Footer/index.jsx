@@ -8,7 +8,11 @@ export const Footer = () => {
 			<Container>
 				<strong className={s.footer__text}>
 					Made by{' '}
-					<a className={s.footer__link} href="https://github.com/code0verdose">
+					<a
+						className={s.footer__link}
+						target="_blanc"
+						href="https://github.com/code0verdose"
+					>
 						codeoverdose❤️
 					</a>
 				</strong>

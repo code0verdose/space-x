@@ -1,4 +1,4 @@
-export default function buildResolvers({paths}) {
+export default function buildResolvers({ paths }) {
 	return {
 		extensions: ['.jsx', '.js'],
 		preferAbsolute: true,

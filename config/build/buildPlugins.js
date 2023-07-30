@@ -2,7 +2,7 @@ import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
-export default function buildPlugins({paths, isDev}) {
+export default function buildPlugins({ paths, isDev }) {
 	return [
 		new webpack.ProgressPlugin(),
 		new HtmlWebpackPlugin({

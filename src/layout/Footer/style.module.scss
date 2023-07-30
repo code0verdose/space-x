@@ -1,19 +1,27 @@
 .footer {
-	height: var(--header-height);;
+	height: var(--header-height);
 	background: var(--bg-color-light);
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
 	display: flex;
 	align-items: center;
-  box-shadow: 3px 0 5px rgba($color: #000000, $alpha: 0.2);
-  &__text {
-    font-size: 18px;
-    display: block;
-    text-align: center;
-  }
-  &__link {
-    text-decoration: underline;
-  }
+	box-shadow: 3px 0 5px rgba($color: #000000, $alpha: 0.2);
+
+	&__text {
+		font-size: 18px;
+		display: block;
+		text-align: center;
+	}
+	&__link {
+		transition: 0.3s;
+
+		&:hover {
+			background: var(--bg-btn-hover-ligh);
+			border-radius: 10px;
+			outline: var(--bg-btn-hover-ligh) 4px solid;
+			transition: 0.3s linear outline;
+		}
+	}
 }
