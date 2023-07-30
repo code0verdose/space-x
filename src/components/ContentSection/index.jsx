@@ -1,14 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import s from './style.module.scss';
 import { MissionArticle } from '../MissionArticle';
 import { Container } from '../../layout/Container';
 import { Grid } from '../../layout/Grid';
 import { Spinner } from '../../ui/Spinner';
-import { useGetAllQuery } from '../../store';
+import { useGetAllQuery, useGetByDateRangeMutation } from '../../store';
 import { useSelector } from 'react-redux';
 
 export const ContentSection = () => {
-	const { data = [], isLoading, isError } = useGetAllQuery();
+	// const { data = [], isLoading, isError } = useGetAllQuery();
+	const [getByDateRange, { data, isLoading, isError }] =
+		useGetByDateRangeMutation();
+
+	const perRangeData = data ? data.docs : [];
+
+	const getDataByRange = async (gte, lte) => {
+		getByDateRange({
+			query: {
+				date_utc: {
+					$gte: '2015-01-01T00:00:00.000Z',
+					$lte: '2019-01-02T00:00:00.000Z',
+				},
+			},
+		});
+	};
+
+	useEffect(() => {
+		getDataByRange();
+	}, []);
+
 	const sortByDate = useSelector((state) => state.missions.sortByDate);
 	const showSuccessfulMissions = useSelector(
 		(state) => state.missions.showSuccessfulMissions
@@ -16,15 +36,15 @@ export const ContentSection = () => {
 
 	const sortedData = React.useMemo(() => {
 		if (sortByDate === 'asc') {
-			return [...data].sort(
+			return [...perRangeData].sort(
 				(a, b) => new Date(a.date_utc) - new Date(b.date_utc)
 			);
 		} else {
-			return [...data].sort(
+			return [...perRangeData].sort(
 				(a, b) => new Date(b.date_utc) - new Date(a.date_utc)
 			);
 		}
-	}, [data, sortByDate]);
+	}, [perRangeData, sortByDate]);
 
 	const filteredData = React.useMemo(() => {
 		if (showSuccessfulMissions) {
