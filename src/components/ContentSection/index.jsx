@@ -10,6 +10,9 @@ import { useSelector } from 'react-redux';
 export const ContentSection = () => {
 	const { data = [], isLoading, isError } = useGetAllQuery();
 	const sortByDate = useSelector((state) => state.missions.sortByDate);
+	const showSuccessfulMissions = useSelector(
+		(state) => state.missions.showSuccessfulMissions
+	);
 
 	const sortedData = React.useMemo(() => {
 		if (sortByDate === 'asc') {
@@ -23,8 +26,15 @@ export const ContentSection = () => {
 		}
 	}, [data, sortByDate]);
 
+	const filteredData = React.useMemo(() => {
+		if (showSuccessfulMissions) {
+			return sortedData.filter((mission) => mission.success === true);
+		}
+		return sortedData;
+	}, [sortedData, showSuccessfulMissions]);
+
 	const renderCards = () => {
-		return sortedData.map((mission) => (
+		return filteredData.map((mission) => (
 			<MissionArticle key={mission.id} missionData={{ ...mission }} />
 		));
 	};

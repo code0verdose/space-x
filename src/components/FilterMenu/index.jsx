@@ -3,7 +3,10 @@ import { Icon } from '../../ui/Icon';
 import { Button } from '../../ui/Button';
 import s from './style.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleSortByDate } from '../../store/slices/missionsSlice';
+import {
+	toggleSortByDate,
+	toggleSuccessfulMissions,
+} from '../../store/slices/missionsSlice';
 
 export const FilterMenu = () => {
 	const dispatch = useDispatch();
@@ -12,8 +15,15 @@ export const FilterMenu = () => {
 		dispatch(toggleSortByDate());
 	};
 
+	const toggleShowSuccessfulMissions = () => {
+		dispatch(toggleSuccessfulMissions());
+	};
+
 	const dateOrderState = useSelector((state) => state.missions.sortByDate);
 	const orderFromLower = dateOrderState === 'asc';
+	const showSuccessfulMissions = useSelector(
+		(state) => state.missions.showSuccessfulMissions
+	);
 
 	return (
 		<ul className={s.menu}>
@@ -27,6 +37,11 @@ export const FilterMenu = () => {
 					<Icon
 						variant={orderFromLower ? 'orderFromLower' : 'orderFromUpper'}
 					/>
+				</Button>
+			</li>
+			<li>
+				<Button handler={toggleShowSuccessfulMissions} className={s.menu__btn}>
+					<Icon variant={showSuccessfulMissions ? 'successfully' : 'failed'} />
 				</Button>
 			</li>
 			<li>

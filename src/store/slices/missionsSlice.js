@@ -5,6 +5,7 @@ const missionsSlice = createSlice({
 	initialState: {
 		data: [],
 		sortByDate: 'desc', // По умолчанию сортировка по убыванию
+		showSuccessfulMissions: true, // По умолчанию только успешные
 	},
 	reducers: {
 		setMissionsData: (state, action) => {
@@ -13,9 +14,12 @@ const missionsSlice = createSlice({
 		toggleSortByDate: (state) => {
 			state.sortByDate = state.sortByDate === 'asc' ? 'desc' : 'asc';
 		},
+		toggleSuccessfulMissions(state) {
+			state.showSuccessfulMissions = !state.showSuccessfulMissions;
+		},
 	},
 });
 
-export const { setMissionsData, toggleSortByDate } = missionsSlice.actions;
+export const { setMissionsData, toggleSortByDate, toggleSuccessfulMissions } = missionsSlice.actions;
 
 export default missionsSlice.reducer;
