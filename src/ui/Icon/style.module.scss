@@ -1,0 +1,10 @@
+/* style.module.scss */
+.icon {
+  width: 30px;
+  height: 30px;
+  svg {
+    width: inherit;
+    height: inherit;
+    fill: black;
+  }
+}
