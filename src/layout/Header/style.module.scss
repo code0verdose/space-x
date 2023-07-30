@@ -1,5 +1,5 @@
 .header {
-  height: 80px;
+  height: var(--header-height);
   background: var(--bg-color-light);
   display: flex;
   align-items: center;

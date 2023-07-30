@@ -6,15 +6,15 @@ import { Grid } from '../../layout/Grid';
 import { Spinner } from '../../ui/Spinner';
 import { useGetAllQuery } from '../../store';
 
-export const HeroSection = () => {
+export const ContentSection = () => {
 	const { data = [], isLoading } = useGetAllQuery();
 
 	const lanuchesCards = data.map((mission) => (
-		<MissionArticle key={mission.id} data={{ ...mission }} />
+		<MissionArticle key={mission.id} missionData={{ ...mission }} />
 	));
 
 	return (
-		<section className={s.hero}>
+		<section className={s.content}>
 			<Container>
 				<Grid>{isLoading ? <Spinner /> : lanuchesCards}</Grid>
 			</Container>

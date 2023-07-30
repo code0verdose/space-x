@@ -1,7 +1,8 @@
 import React from 'react';
 import './styles/global.scss';
 import { Layout } from '../layout/Layout';
-import { HeroSection } from '../components/HeroSection';
+import { ContentSection } from '../components/ContentSection';
+import { FilterPanel } from '../components/FilterPanel';
 
 
 export const App = () => {
@@ -9,7 +10,8 @@ export const App = () => {
 
 	return (
 		<Layout>
-			<HeroSection/>
+			<FilterPanel/>
+			<ContentSection/>
 		</Layout>
 	);
 };

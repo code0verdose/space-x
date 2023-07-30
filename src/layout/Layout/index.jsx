@@ -1,17 +1,15 @@
 import React from 'react';
-import { Container } from '../Container';
+import s from './style.module.scss';
+
 import { Header } from '../Header';
+import { Footer } from '../Footer';
 
 export const Layout = ({ children }) => {
 	return (
 		<>
 			<Header />
-			<main>{children}</main>
-			<footer>
-				<Container>
-					Made by <a href="https://github.com/code0verdose">codeoverdose</a>
-				</Container>
-			</footer>
+			<main className={s.main}>{children}</main>
+			<Footer/>
 		</>
 	);
 };

@@ -20,6 +20,9 @@
       height: 100%;
       background: lightgray;
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
   &__info {
