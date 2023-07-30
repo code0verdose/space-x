@@ -1,4 +1,4 @@
-export default function buildDevServer({port}) {
+export default function buildDevServer({ port }) {
 	return {
 		port: port,
 		open: true,

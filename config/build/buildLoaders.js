@@ -1,21 +1,23 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
-export default function buildLoaders({isDev}) {
-
+export default function buildLoaders({ isDev }) {
 	const svgLoader = {
 		test: /\.svg$/,
 		use: ['@svgr/webpack'],
 	};
 
 	const babelLoader = {
-		test: /\.(js|jsx)$/,
+		test: /\.(m?js|jsx)$/,
 		exclude: /node_modules/,
+		resolve: {
+			fullySpecified: false,
+		},
 		use: {
 			loader: 'babel-loader',
 			options: {
 				presets: ['@babel/preset-env', '@babel/preset-react'],
-			}
-		}
+			},
+		},
 	};
 
 	const fileLoader = {
@@ -34,20 +36,17 @@ export default function buildLoaders({isDev}) {
 			{
 				loader: 'css-loader',
 				options: {
-					modules: {auto: (resPath) => Boolean(resPath.includes('.module.')),
+					modules: {
+						auto: (resPath) => Boolean(resPath.includes('.module.')),
 						localIdentName: isDev
 							? '[path][name]__[local]--[hash:base64:8]'
-							: '[hash:base64:8]',}
+							: '[hash:base64:8]',
+					},
 				},
 			},
 			'sass-loader',
 		],
 	};
 
-	return [
-		fileLoader,
-		svgLoader,
-		babelLoader,
-		cssLoader
-	];
+	return [fileLoader, svgLoader, babelLoader, cssLoader];
 }

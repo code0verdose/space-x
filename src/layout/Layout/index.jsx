@@ -1,21 +1,15 @@
 import React from 'react';
-import {Container} from '../Container';
+import { Container } from '../Container';
+import { Header } from '../Header';
 
-export const Layout = ({children}) => {
-
+export const Layout = ({ children }) => {
 	return (
 		<>
-			<header>
-				<Container>
-					<h1>Space-X Mission's</h1>
-				</Container>
-			</header>
-			<main>
-				{children}
-			</main>
+			<Header />
+			<main>{children}</main>
 			<footer>
 				<Container>
-          Made by <a href="https://github.com/code0verdose">codeoverdose</a>
+					Made by <a href="https://github.com/code0verdose">codeoverdose</a>
 				</Container>
 			</footer>
 		</>
